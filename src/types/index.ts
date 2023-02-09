@@ -1,25 +1,27 @@
-import { chaptersData, authorsData, Comics } from './comics';
-import { Authors } from "./authors";
-import { Categories } from "./categories";
-import { ChaptersComics } from "./chapters"
-import { CommentsComics } from "./comments";
+import { ChapterData, AuthorData, Comic } from './comics';
+import { Author } from "./authors";
+import { Category } from "./categories";
+import { ComicChapter } from "./chapters"
+import { ComicComment } from "./comments";
 import { News } from "./news";
-import { PagesChapters } from "./pages";
-import { Tags } from "./tags";
-import { UserRoles } from "./userRoles";
-import { Users } from "./users";
+import { ChapterPage } from "./pages";
+import { Tag } from "./tags";
+import { UserRole } from "./userRoles";
+import { User } from "./users";
+import { Test } from "./test"
 
 export type { 
-    chaptersData,
-    authorsData, 
-    Comics,
-    Authors,
-    Categories,
-    ChaptersComics,
-    CommentsComics,
+    ChapterData,
+    AuthorData, 
+    Comic,
+    Author,
+    Category,
+    ComicChapter,
+    ComicComment,
     News,
-    PagesChapters,
-    Tags,
-    UserRoles,
-    Users
+    ChapterPage,
+    Tag,
+    UserRole,
+    User,
+    Test
 }

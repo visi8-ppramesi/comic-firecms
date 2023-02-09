@@ -1,10 +1,12 @@
 import {
-    buildCollection
+    buildCollection,
+    UploadedFileContext
 } from "@camberi/firecms";
-import { pagesChaptersCollection } from "./pages/pages"
-import { ChaptersComics } from "@/types/chapters";
+import { buildPagesChaptersCollection } from "./pages/pages"
+import { ComicChapter } from "@/types/chapters";
+import { buildPostProcessFunction, buildStoragePathFunction } from "@/utils/pathTransformers";
 
-export const chaptersComicsCollection = buildCollection<ChaptersComics>({
+export const chaptersComicsCollection = buildCollection<ComicChapter>({
     name: "Comic Chapters",
     path: "comics",
     properties: {
@@ -18,7 +20,19 @@ export const chaptersComicsCollection = buildCollection<ChaptersComics>({
         },
         chapter_preview_url: {
             name: "Chapter Preview Url",
-            dataType: "string"
+            dataType: "string",
+            storage: {
+                //gs://comics-77200.appspot.com/previews/galeo_cpt1_preview.jpg
+                storagePath: buildStoragePathFunction(["previews", "$comics", "$chapters"]),
+                acceptedFiles: ["image/*, video/*"],
+                metadata: {
+                    cacheControl: "max-age=1000000"
+                },
+                fileName: function(ctx: UploadedFileContext): string {
+                    return ctx.file.name
+                },
+                postProcess: buildPostProcessFunction()
+            }
         },
         price: {
             name: "Price",
@@ -34,6 +48,6 @@ export const chaptersComicsCollection = buildCollection<ChaptersComics>({
         }
     },
     subcollections: [
-        pagesChaptersCollection
+        buildPagesChaptersCollection()
     ]
 })

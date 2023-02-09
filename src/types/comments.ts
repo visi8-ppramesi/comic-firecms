@@ -2,17 +2,17 @@ import {
     EntityReference
 } from "@camberi/firecms";
 
-export type userData = {
+export type UserData = {
     id: EntityReference,
     name: string,
     profile_image_url: string
 }
 
-export type CommentsComics = {
+export type ComicComment = {
     created_date: Date,
     date: Date,
     flag: number,
     message: string,
     user: EntityReference,
-    user_data: userData
+    user_data: UserData
 }

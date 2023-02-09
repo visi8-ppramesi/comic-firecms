@@ -4,9 +4,10 @@ import {
 } from "@camberi/firecms";
 import { chaptersComicsCollection } from "./chapters/chapters"
 import { commentsComicsCollection } from "./comments/comments"
-import { Comics } from "@/types/comics";
+import { Comic } from "@/types/comics";
+import { buildPostProcessFunction, buildStoragePathFunction } from "@/utils/pathTransformers";
 
-export const comicsCollection = buildCollection<Comics>({
+export const comicsCollection = buildCollection<Comic>({
     name: "Comics",
     path: "comics",
     properties: {
@@ -46,9 +47,8 @@ export const comicsCollection = buildCollection<Comics>({
             name: "Cover Image",
             dataType: "string",
             storage: {
-                storagePath: function(ctx: UploadedFileContext): string {
-                    return "test"
-                },
+                //gs://comics-77200.appspot.com/covers/galeo-cover.jpg
+                storagePath: buildStoragePathFunction(["covers", "$comics"]),
                 acceptedFiles: ["image/*"],
                 maxSize: 1024 * 1024,
                 metadata: {
@@ -56,7 +56,8 @@ export const comicsCollection = buildCollection<Comics>({
                 },
                 fileName: function(ctx: UploadedFileContext): string {
                     return ctx.file.name
-                }
+                },
+                postProcess: buildPostProcessFunction()
             }
         },
         age_gate: {
@@ -74,17 +75,19 @@ export const comicsCollection = buildCollection<Comics>({
         authors_data: {
             name: "Authors Data",
             dataType: "array",
+            readOnly: true,
             of: {
                 dataType: "map",
                 properties: {
                     id: {
                         name: "Id",
-                        dataType: "reference",
-                        path: "authors"
+                        dataType: "string",
+                        readOnly: true
                     },
                     name: {
                         name: "Name",
-                        dataType: "string"
+                        dataType: "string",
+                        readOnly: true
                     }
                 }
             }
@@ -99,32 +102,39 @@ export const comicsCollection = buildCollection<Comics>({
         chapters_data: {
             name: "Chapters Data",
             dataType: "array",
+            readOnly: true,
             of: {
                 dataType: "map",
                 properties: {
                     chapter_number: {
                         name: "Chapter Number",
-                        dataType: "number"
+                        dataType: "number",
+                        readOnly: true
                     },
                     chapter_preview_url: {
                         name: "Chapter Preview Url",
-                        dataType: "string"
+                        dataType: "string",
+                        readOnly: true
                     },
                     id: {
                         name: "Id",
-                        dataType: "string"
+                        dataType: "string",
+                        readOnly: true
                     },
                     price: {
                         name: "Price",
-                        dataType: "number"
+                        dataType: "number",
+                        readOnly: true
                     },
                     release_date: {
                         name: "Release Date",
-                        dataType: "date"
+                        dataType: "date",
+                        readOnly: true
                     },
                     view_count: {
                         name: "View Count",
-                        dataType: "number"
+                        dataType: "number",
+                        readOnly: true
                     }
                 }
             }

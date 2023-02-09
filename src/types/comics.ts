@@ -2,7 +2,7 @@ import {
     EntityReference
 } from "@camberi/firecms";
 
-export type chaptersData = {
+export type ChapterData = {
     chapter_number: number,
     chapter_preview_url: string,
     id: string,
@@ -11,12 +11,12 @@ export type chaptersData = {
     view_count: number
 }
 
-export type authorsData = {
-    id: EntityReference,
+export type AuthorData = {
+    id: string,
     name: string
 }
 
-export type Comics = {
+export type Comic = {
     title: string,
     description: string,
     price: number,
@@ -27,10 +27,10 @@ export type Comics = {
     is_draft: boolean,
     cover_image_url: string,
     age_gate: boolean,
-    authors: string[],
-    authors_data: authorsData[],
+    authors: EntityReference[],
+    authors_data: AuthorData[],
     categories: string[],
-    chapters_data: chaptersData[],
+    chapters_data: ChapterData[],
     keywords: string[],
     tags: string[]
 }

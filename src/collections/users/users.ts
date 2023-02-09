@@ -1,10 +1,12 @@
 import {
     buildCollection,
+    EntityCollection,
     UploadedFileContext
 } from "@camberi/firecms";
-import { Users } from "@/types/users";
+import { User } from "@/types/users";
+import { buildPostProcessFunction, buildStoragePathFunction } from "@/utils/pathTransformers";
 
-export const usersCollection = buildCollection<Users>({
+export const usersCollection = buildCollection<User>({
     name: "Users",
     path: "users",
     properties: {
@@ -28,9 +30,7 @@ export const usersCollection = buildCollection<Users>({
             name: "Profile Image Url",
             dataType: "string",
             storage: {
-                storagePath: function(ctx: UploadedFileContext): string {
-                    return "test"
-                },
+                storagePath: buildStoragePathFunction(["uploads", "profile_images", "$users"]),
                 acceptedFiles: ["image/*"],
                 maxSize: 1024 * 1024,
                 metadata: {
@@ -38,14 +38,16 @@ export const usersCollection = buildCollection<Users>({
                 },
                 fileName: function(ctx: UploadedFileContext): string {
                     return ctx.file.name
-                }
+                },
+                postProcess: buildPostProcessFunction()
             }
         },
         bookmarks: {
             name: "Bookmarks",
             dataType: "array",
             of: {
-                dataType: "string"
+                dataType: "reference",
+                path: "comics"
             }
         },
         comic_subscriptions: {
@@ -57,12 +59,16 @@ export const usersCollection = buildCollection<Users>({
             }
         },
         favorites: {
-            name: "Favorites ",
+            name: "Favorites",
             dataType: "array",
             of: {
                 dataType: "reference",
                 path: "comics"
             }
+        },
+        date_of_birth: {
+            name: "Date of Birth",
+            dataType: "date"
         }
     }
 })

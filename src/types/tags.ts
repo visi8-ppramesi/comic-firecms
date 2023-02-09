@@ -1,3 +1,3 @@
-export type Tags = {
+export type Tag = {
     name: string
 }

@@ -1,9 +1,9 @@
 import {
     buildCollection
 } from "@camberi/firecms";
-import { Tags } from "@/types/tags";
+import { Tag } from "@/types/tags";
 
-export const tagsCollection = buildCollection<Tags>({
+export const tagsCollection = buildCollection<Tag>({
     name: "Tags",
     path: "tags",
     properties: {

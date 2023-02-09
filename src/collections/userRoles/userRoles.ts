@@ -1,9 +1,9 @@
 import {
     buildCollection
 } from "@camberi/firecms";
-import { UserRoles } from "@/types/userRoles";
+import { UserRole } from "@/types/userRoles";
 
-export const userRolesCollection = buildCollection<UserRoles>({
+export const userRolesCollection = buildCollection<UserRole>({
     name: "User Roles",
     path: "user_roles",
     properties: {

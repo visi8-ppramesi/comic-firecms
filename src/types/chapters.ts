@@ -1,4 +1,4 @@
-export type ChaptersComics = {
+export type ComicChapter = {
     ar_price: boolean,
     chapter_number: number,
     chapter_preview_url: string,

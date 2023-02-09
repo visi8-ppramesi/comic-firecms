@@ -2,9 +2,9 @@ import {
     buildCollection,
     UploadedFileContext
 } from "@camberi/firecms";
-import { CommentsComics } from "@/types/comments";
+import { ComicComment } from "@/types/comments";
 
-export const commentsComicsCollection = buildCollection<CommentsComics>({
+export const commentsComicsCollection = buildCollection<ComicComment>({
     name: "Comments Comics",
     path: "comics",
     properties: {
@@ -36,28 +36,18 @@ export const commentsComicsCollection = buildCollection<CommentsComics>({
                 id: {
                     name: "Id",
                     dataType: "reference",
-                    path: "users"
+                    path: "users",
+                    readOnly: true
                 },
                 name: {
                     name: "Name",
-                    dataType: "string"
+                    dataType: "string",
+                    readOnly: true
                 },
                 profile_image_url: {
                     name: "Profile Image Url",
                     dataType: "string",
-                    storage: {
-                        storagePath: function(ctx: UploadedFileContext): string {
-                            return "test"
-                        },
-                        acceptedFiles: ["image/*"],
-                        maxSize: 1024 * 1024,
-                        metadata: {
-                            cacheControl: "max-age=1000000"
-                        },
-                        fileName: function(ctx: UploadedFileContext): string {
-                            return ctx.file.name
-                        }
-                    }
+                    readOnly: true
                 }
             }
         }

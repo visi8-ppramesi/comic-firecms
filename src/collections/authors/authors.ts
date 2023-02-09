@@ -1,10 +1,10 @@
 import {
     buildCollection
 } from "@camberi/firecms";
-import { Authors } from "@/types/authors"
+import { Author } from "@/types/authors"
 
 
-export const authorsCollection = buildCollection<Authors>({
+export const authorsCollection = buildCollection<Author>({
     name: "Authors",
     path: "authors",
     properties: {
@@ -40,7 +40,8 @@ export const authorsCollection = buildCollection<Authors>({
         },
         user_id: {
             name: "User Id",
-            dataType: "string"
+            dataType: "reference",
+            path: "users"
         }
     }
 })

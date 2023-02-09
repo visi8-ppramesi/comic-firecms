@@ -1,3 +1,3 @@
-export type UserRoles = {
+export type UserRole = {
     roles: string[]
 }
