@@ -1,6 +1,6 @@
 import {
     buildCollection
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 import { UserRole } from "@/types/userRoles";
 
 export const userRolesCollection = buildCollection<UserRole>({

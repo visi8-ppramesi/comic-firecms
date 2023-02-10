@@ -1,4 +1,4 @@
-import { EntityIdUpdateProps } from "@camberi/firecms";
+import { EntityIdUpdateProps } from "ppramesi-firecms";
 import { v4 } from "uuid"
 
 export function isV4UUID(str: string | undefined) : boolean {

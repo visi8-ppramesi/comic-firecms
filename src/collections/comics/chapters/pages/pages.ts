@@ -4,7 +4,7 @@ import {
     EntityIdUpdateProps,
     EntityOnFetchProps,
     UploadedFileContext
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 import { ChapterPage } from "@/types/pages";
 import { buildPostProcessFunction, buildStoragePathFunction } from "@/utils/pathTransformers";
 import { pageSceneCollection } from "./scenes/scenes";

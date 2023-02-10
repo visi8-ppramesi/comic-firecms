@@ -2,7 +2,7 @@ import {
     buildCollection,
     EntityCollection,
     UploadedFileContext
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 import { User } from "@/types/users";
 import { buildPostProcessFunction, buildStoragePathFunction } from "@/utils/pathTransformers";
 

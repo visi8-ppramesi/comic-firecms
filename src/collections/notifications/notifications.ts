@@ -1,6 +1,6 @@
 import {
     buildCollection
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 
 type Notifications = {
     unread_count: number

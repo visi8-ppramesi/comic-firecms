@@ -1,7 +1,7 @@
 import {
     buildCollection,
     UploadedFileContext
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 import { ComicComment } from "@/types/comments";
 
 export const commentsComicsCollection = buildCollection<ComicComment>({

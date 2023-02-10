@@ -1,6 +1,6 @@
 import {
     EntityReference
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 
 export type ChapterData = {
     chapter_number: number,

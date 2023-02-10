@@ -1,4 +1,4 @@
-import { UploadedFileContext } from "@camberi/firecms"
+import { UploadedFileContext } from "ppramesi-firecms"
 import isNil from "lodash/isNil"
 
 type PathKeyPairs = {

@@ -10,11 +10,11 @@ import {
   FirebaseCMSApp,
   FirebaseLoginView,
   FirebaseLoginViewProps
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 
 import { authorsCollection } from "./collections/authors/authors";
 import { categoriesCollection } from "./collections/categories/categories";
-import { comicsCollection } from "./collections/comics/comics";
+import { buildComicsCollection } from "./collections/comics/comics";
 import { newsCollection } from "./collections/news/news";
 // import { settingsCollection } from "./collections/settings/settings";
 import { tagsCollection } from "./collections/tags/tags";
@@ -67,7 +67,7 @@ export default function App() {
   return <FirebaseCMSApp
     name={"Comics Backend"}
     authentication={myAuthenticator}
-    collections={[authorsCollection, categoriesCollection, comicsCollection, newsCollection, tagsCollection, userRolesCollection, usersCollection]}
+    collections={[authorsCollection, categoriesCollection, buildComicsCollection(), newsCollection, tagsCollection, userRolesCollection, usersCollection]}
     firebaseConfig={firebaseConfig}
     signInOptions={["password"]}
     LoginView={ShitFuckLoginView}

@@ -2,7 +2,7 @@ import { Test } from "@/types/test";
 import {
     buildCollection,
     UploadedFileContext
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 import { transformPathToGS } from "@/utils/pathTransformers";
 
 export const testCollection = buildCollection<Test>({

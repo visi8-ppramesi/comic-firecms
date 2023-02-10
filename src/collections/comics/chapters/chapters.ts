@@ -1,7 +1,7 @@
 import {
     buildCollection,
     UploadedFileContext
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 import { buildPagesChaptersCollection } from "./pages/pages"
 import { ComicChapter } from "@/types/chapters";
 import { buildPostProcessFunction, buildStoragePathFunction } from "@/utils/pathTransformers";

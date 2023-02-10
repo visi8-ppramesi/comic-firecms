@@ -1,6 +1,6 @@
 import {
     EntityReference
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 
 export type UserData = {
     id: EntityReference,

@@ -1,7 +1,7 @@
 import {
     buildCollection,
     UploadedFileContext
-} from "@camberi/firecms";
+} from "ppramesi-firecms";
 import { Scene } from "@/types/scenes";
 import { buildPostProcessFunction, buildStoragePathFunction } from "@/utils/pathTransformers";
 
