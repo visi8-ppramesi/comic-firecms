@@ -1,8 +1,26 @@
 import {
-    buildCollection
+    buildCollection, EntityReference,
+    AdditionalFieldDelegate, AsyncPreviewComponent
 } from "ppramesi-firecms";
+import { buildChaptersComicsCollection } from "@/collections/comics/chapters/chapters"
 import { GiveawayCode } from "@/types/giveawayCode"
 import { CreateGiveawayCodeButton } from "@/actions/CreateGiveawayCodeButton";
+
+const productAdditionalField: AdditionalFieldDelegate<GiveawayCode> = {
+    id: "comic_chapter",
+    name: "Chapter",
+    Builder: ({ entity, context }) => {
+        return (
+            <AsyncPreviewComponent builder={
+                context.dataSource.fetchEntity({
+                    path: `comics/${entity.values.comic.id}/chapters`,
+                    entityId: entity.values.chapter.id,
+                    collection: buildChaptersComicsCollection()
+                }).then((entity) => entity?.values.chapter_number)
+            }/>
+        )
+    }
+};
 
 export const giveawayCodesCollection = buildCollection<GiveawayCode>({
     name: "Giveaway Codes",
@@ -28,20 +46,36 @@ export const giveawayCodesCollection = buildCollection<GiveawayCode>({
             dataType: "reference",
             path: "comics"
         },
-        chapter: {
-            name: "Giveaway Chapter",
-            dataType: "reference",
-            path: "comics/chapters"
+        chapter: (param) => {
+            console.log("chapter param", param)
+            const { values } = param
+            if(values.chapter){
+                return {
+                    name: "Giveaway Chapter",
+                    dataType: "reference",
+                    path: values.chapter.path
+                }
+            }else{
+                return {
+                    name: "Giveaway Chapter",
+                    dataType: "reference",
+                }
+            }
         },
+        // {
+        //     name: "Giveaway Chapter",
+        //     dataType: "reference",
+        //     // path: "comics/chapters"
+        // },
         created_by: {
             name: "Created By",
             dataType: "reference",
-            path: "user"
+            path: "users"
         },
         claimed_by: {
             name: "Created By",
             dataType: "reference",
-            path: "user"
+            path: "users"
         },
         expiration_date: {
             name: "Expiration Date",

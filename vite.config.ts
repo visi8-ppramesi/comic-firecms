@@ -18,7 +18,9 @@ const config = {
   },
   resolve: {
     alias: {
-      "@utils": path.resolve(__dirname, "./src/utils")
+      "@utils": path.resolve(__dirname, "./src/utils"),
+      "@/utils": path.resolve(__dirname, "./src/utils"),
+      "@": path.resolve(__dirname, "./src")
     }
   },
   plugins: [react()],

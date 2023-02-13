@@ -15,7 +15,7 @@ export function CreateGiveawayCodeButton({ selectionController }: CollectionActi
     const onClick = (event: React.MouseEvent) => {
         sideDialogController.open({
             key: Math.random().toString(36).substring(2),
-            component: CreateGiveawayCode(sideDialogController)
+            component: (<CreateGiveawayCode />)
         })
     };
 

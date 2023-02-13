@@ -1,7 +1,7 @@
 import { EntityReference } from "ppramesi-firecms" 
 
 export type GiveawayCode = {
-    chapter: EntityReference | string,
+    chapter: EntityReference,
     claimed_date: Date,
     code: string,
     comic: EntityReference,

@@ -26,6 +26,7 @@ import "@fontsource/ibm-plex-mono";
 
 import { db } from "@utils/firebase"
 import { collection, doc, getDoc } from "firebase/firestore"
+import { giveawayCodesCollection } from "./collections/giveawayCode/giveawayCodes";
 
 export default function App() {
   const myAuthenticator: Authenticator<FirebaseUser> = useCallback(async ({
@@ -67,7 +68,7 @@ export default function App() {
   return <FirebaseCMSApp
     name={"Comics Backend"}
     authentication={myAuthenticator}
-    collections={[authorsCollection, categoriesCollection, buildComicsCollection(), newsCollection, tagsCollection, userRolesCollection, usersCollection]}
+    collections={[authorsCollection, categoriesCollection, buildComicsCollection(), newsCollection, tagsCollection, userRolesCollection, usersCollection, giveawayCodesCollection]}
     firebaseConfig={firebaseConfig}
     signInOptions={["password"]}
     LoginView={ShitFuckLoginView}

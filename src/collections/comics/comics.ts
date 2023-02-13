@@ -6,7 +6,7 @@ import {
     useDataSource,
     EntityCollection,
 } from "ppramesi-firecms";
-import { chaptersComicsCollection } from "./chapters/chapters"
+import { buildChaptersComicsCollection } from "./chapters/chapters"
 import { commentsComicsCollection } from "./comments/comments"
 import { Comic, AuthorData } from "@/types/comics";
 import { Author } from "@/types/authors"
@@ -190,7 +190,7 @@ export const buildComicsCollection = function(): EntityCollection<Comic>{
             }
         },
         subcollections: [
-            chaptersComicsCollection,
+            buildChaptersComicsCollection(),
             commentsComicsCollection
         ]
     })
