@@ -5,6 +5,8 @@ import {
     EntityValues,
     useDataSource,
     EntityCollection,
+    SaveEntityProps,
+    Entity
 } from "ppramesi-firecms";
 import { buildChaptersComicsCollection } from "./chapters/chapters"
 import { commentsComicsCollection } from "./comments/comments"
@@ -43,7 +45,14 @@ export const buildComicsCollection = function(): EntityCollection<Comic>{
                     }, [] as AuthorData[]))
                 }
                 return saveProps.values
-            }
+            },
+            // async overrideSaveEntity<Comic>(saveEntityProps: SaveEntityProps){
+            //     return {
+            //         path: saveEntityProps.path,
+            //         id: saveEntityProps.entityId,
+            //         values: saveEntityProps.values
+            //     } as Entity<Comic>
+            // }
         },
         properties: {
             title: {

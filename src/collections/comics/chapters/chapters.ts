@@ -10,7 +10,7 @@ import { buildPostProcessFunction, buildStoragePathFunction } from "@/utils/path
 export const buildChaptersComicsCollection = function(): EntityCollection<ComicChapter>{
     return buildCollection<ComicChapter>({
         name: "Comic Chapters",
-        path: "comics",
+        path: "chapters",
         alias: "comic_chapters",
         properties: {
             ar_price: {

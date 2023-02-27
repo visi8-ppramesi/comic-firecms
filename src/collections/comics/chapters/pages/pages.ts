@@ -27,7 +27,7 @@ export const buildPagesChaptersCollection = function(): EntityCollection<Chapter
     } 
     return buildCollection<ChapterPage>({
         name: "Pages Chapters",
-        path: "comics",
+        path: "pages",
         callbacks: {
             onFetch(entityFetchProps: EntityOnFetchProps<ChapterPage>){
                 const { entity, entity: { values } } = entityFetchProps

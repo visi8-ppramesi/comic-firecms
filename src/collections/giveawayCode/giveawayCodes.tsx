@@ -1,26 +1,9 @@
 import {
-    buildCollection, EntityReference,
-    AdditionalFieldDelegate, AsyncPreviewComponent
+    buildCollection,
 } from "ppramesi-firecms";
-import { buildChaptersComicsCollection } from "@/collections/comics/chapters/chapters"
 import { GiveawayCode } from "@/types/giveawayCode"
 import { CreateGiveawayCodeButton } from "@/actions/CreateGiveawayCodeButton";
-
-const productAdditionalField: AdditionalFieldDelegate<GiveawayCode> = {
-    id: "comic_chapter",
-    name: "Chapter",
-    Builder: ({ entity, context }) => {
-        return (
-            <AsyncPreviewComponent builder={
-                context.dataSource.fetchEntity({
-                    path: `comics/${entity.values.comic.id}/chapters`,
-                    entityId: entity.values.chapter.id,
-                    collection: buildChaptersComicsCollection()
-                }).then((entity) => entity?.values.chapter_number)
-            }/>
-        )
-    }
-};
+import { buildInvalidateField } from "@/actions/CreateInvalidateCodeButton"
 
 export const giveawayCodesCollection = buildCollection<GiveawayCode>({
     name: "Giveaway Codes",
@@ -31,6 +14,7 @@ export const giveawayCodesCollection = buildCollection<GiveawayCode>({
         edit: true,
         delete: true
     },
+    additionalFields: [buildInvalidateField],
     Actions: CreateGiveawayCodeButton,
     properties: {
         claimed_date: {
@@ -42,26 +26,31 @@ export const giveawayCodesCollection = buildCollection<GiveawayCode>({
             dataType: "string"
         },
         comic: {
-            name: "Giveaway Chapter",
+            name: "Giveaway Comic",
             dataType: "reference",
             path: "comics"
         },
-        chapter: (param) => {
-            console.log("chapter param", param)
-            const { values } = param
-            if(values.chapter){
-                return {
-                    name: "Giveaway Chapter",
-                    dataType: "reference",
-                    path: values.chapter.path
-                }
-            }else{
-                return {
-                    name: "Giveaway Chapter",
-                    dataType: "reference",
-                }
-            }
+        chapter: {
+            name: "Chapter",
+            dataType: "reference",
+            path: "comics/comicid/chapters"
         },
+        // chapter: (param) => {
+        //     console.log("chapter param", param)
+        //     const { values } = param
+        //     if(values.chapter){
+        //         return {
+        //             name: "Giveaway Chapter",
+        //             dataType: "reference",
+        //             path: values.chapter.path
+        //         }
+        //     }else{
+        //         return {
+        //             name: "Giveaway Chapter",
+        //             dataType: "reference",
+        //         }
+        //     }
+        // },
         // {
         //     name: "Giveaway Chapter",
         //     dataType: "reference",
@@ -73,7 +62,7 @@ export const giveawayCodesCollection = buildCollection<GiveawayCode>({
             path: "users"
         },
         claimed_by: {
-            name: "Created By",
+            name: "Claimed By",
             dataType: "reference",
             path: "users"
         },

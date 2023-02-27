@@ -98,11 +98,14 @@ export function CreateGiveawayCode() {
             const config: {headers?: {[headerValue: string]: string}} = {}
             currentUser.getIdToken(true)
                 .then((tokenId) => {
+                    const giveawayUrl = new URL(import.meta.env.VITE_GIVEAWAY_SERVICE_URL)
+                    giveawayUrl.pathname = "create-code"
+
                     config.headers = {
                         Authorization: `Bearer ${tokenId}`
                     }
-                    axios.post(
-                        import.meta.env.VITE_GIVEAWAY_SERVICE_URL,
+                    return axios.post(
+                        giveawayUrl.toString(),
                         {
                             expirationDate: expiration, 
                             comicId: comic, 

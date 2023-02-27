@@ -20,6 +20,7 @@ import { newsCollection } from "./collections/news/news";
 import { tagsCollection } from "./collections/tags/tags";
 import { userRolesCollection } from "./collections/userRoles/userRoles";
 import { usersCollection } from "./collections/users/users";
+import { buildOrdersCollection } from "./collections/orders/orders"
 
 import "typeface-rubik";
 import "@fontsource/ibm-plex-mono";
@@ -68,7 +69,7 @@ export default function App() {
   return <FirebaseCMSApp
     name={"Comics Backend"}
     authentication={myAuthenticator}
-    collections={[authorsCollection, categoriesCollection, buildComicsCollection(), newsCollection, tagsCollection, userRolesCollection, usersCollection, giveawayCodesCollection]}
+    collections={[buildOrdersCollection(), authorsCollection, categoriesCollection, buildComicsCollection(), newsCollection, tagsCollection, userRolesCollection, usersCollection, giveawayCodesCollection]}
     firebaseConfig={firebaseConfig}
     signInOptions={["password"]}
     LoginView={ShitFuckLoginView}
