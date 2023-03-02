@@ -10,6 +10,7 @@ import {
     DialogContent,
     DialogContentText,
     DialogTitle,
+    CircularProgress
 } from "@mui/material";
 import { useCallback, useState } from "react"
 import axios from "axios";
@@ -22,6 +23,7 @@ export const buildInvalidateField: AdditionalFieldDelegate<GiveawayCode> = {
         const auth = getAuth(firebaseApp)
         const snackbar = useSnackbarController()
 
+        const [dataLoading, setDataLoading] = useState<boolean>(false);
         const [ open, setOpen ] = useState<boolean>(false)
         const handleOpen = useCallback(() => {
             setOpen(true)
@@ -34,6 +36,7 @@ export const buildInvalidateField: AdditionalFieldDelegate<GiveawayCode> = {
         const handleInvalidate = useCallback(() => {
             const {currentUser} = auth
             if(currentUser && submissionStatus === "idle"){
+                setDataLoading(true)
                 submissionStatus = "submitting"
                 const config: {headers?: {[headerValue: string]: string}} = {}
                 currentUser.getIdToken(true)
@@ -61,6 +64,7 @@ export const buildInvalidateField: AdditionalFieldDelegate<GiveawayCode> = {
                         })
                     })
                     .finally(() => {
+                        setDataLoading(false)
                         setOpen(false)
                     })
             }else if(submissionStatus === "submitting"){
@@ -81,11 +85,14 @@ export const buildInvalidateField: AdditionalFieldDelegate<GiveawayCode> = {
                         </DialogContentText>
                     </DialogContent>
                     <CustomDialogActions>
+                        {dataLoading && <CircularProgress size={16} thickness={8}/>}
+
                         <Button color="primary" onClick={handleClose}>
                             Cancel
                         </Button>
 
                         <Button color="primary"
+                                disabled={dataLoading}
                                 variant="contained"
                                 onClick={handleInvalidate}>
                             Invalidate
