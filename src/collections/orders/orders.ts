@@ -10,7 +10,7 @@ import {
     firestoreToCMSModel
     // useFireCMSContext,
 } from "ppramesi-firecms";
-import { Orders } from "@/types/orders";
+import { Order } from "@/types/orders";
 import { getFirestore, collectionGroup, doc as docRef, getDocs, getDoc, orderBy, query } from "firebase/firestore"
 import { useState } from "react";
 import { app } from "@/utils/firebase"
@@ -19,13 +19,13 @@ type OrdersMapping = {
     [key: string]: string
 }
 
-export const buildOrdersCollection = function(): EntityCollection<Orders>{
+export const buildOrdersCollection = function(): EntityCollection<Order>{
     // const { firebaseApp } = useFireCMSContext()
     const db = getFirestore(app)
     const ordersMapping: OrdersMapping = {}
     // const [ordersMapping, setOrdersMapping] = useState<OrdersMapping>({})
 
-    return buildCollection<Orders>({
+    return buildCollection<Order>({
         name: "Orders",
         path: "orders",
         initialSort: ["created_date", "desc"],
@@ -61,7 +61,7 @@ export const buildOrdersCollection = function(): EntityCollection<Orders>{
                         id: doc.id,
                         path: pathToSubcol,
                         values: data
-                    } as Entity<Orders>;
+                    } as Entity<Order>;
                 });
             },
             async overrideEntityFetch(fetchEntityProps: FetchEntityProps){
@@ -82,16 +82,16 @@ export const buildOrdersCollection = function(): EntityCollection<Orders>{
                         id: snapshot.id,
                         path: pathToSubcol,
                         values: data
-                    } as Entity<Orders>
+                    } as Entity<Order>
                 }else{
                     return undefined
                 }
             },
-            overrideSaveEntity<Orders>(saveEntityProps: SaveEntityProps){
+            overrideSaveEntity<Order>(saveEntityProps: SaveEntityProps){
                 // console.log(saveEntityProps)
-                return Promise.resolve({} as Entity<Orders>)
+                return Promise.resolve({} as Entity<Order>)
             },
-            overrideDeleteEntity<Orders>(deleteEntityProps: DeleteEntityProps){
+            overrideDeleteEntity<Order>(deleteEntityProps: DeleteEntityProps){
                 // console.log(deleteEntityProps)
                 return Promise.resolve()
             }

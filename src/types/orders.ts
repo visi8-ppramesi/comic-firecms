@@ -44,7 +44,7 @@ export type NotificationResponse = {
     bill_key?: string
 }
 
-export type Orders = {
+export type Order = {
     created_date: Date,
     // item_references?: EntityReference[],
     items: OrderItem[],
